@@ -367,7 +367,7 @@ jstat -gcutil pid 1000 1000
 
 演示:
 
-jmap -heap pid
+jmap -heap pid（显示的容量是当前容量，ratio的比例是最大容量。）
 
 jmap -histo pid
 
@@ -495,6 +495,12 @@ VM 概要的数据有五个部分：
 
 飞行纪录
 
+如果jmc连不上进程，需要在启动的进程加上如下参数开启jmx：
+
+```
+java -XX:+UnlockCommercialFeatures -Dcom.sun.management.jmxremote.rmi.port=8192 -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=8192 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=localhost  
+```
+
 ## GC的背景和一般原理（了解）
 
 标记清除算法（Mark and Sweep） 
@@ -564,6 +570,8 @@ CPU 利用率高，暂停时间长。简单粗暴，就像老式的电脑，动�
 -XX:+UseParallelOldGC
 
 -XX:+UseParallelGC -XX:+UseParallelOldGC
+
+开启 -XX:+UseAdaptiveSizePolicy、关闭 -XX:-UseAdaptiveSizePolicy，自适应调节策略，动态调整 Java 堆中各个区域的大小以及进入老年代的年龄，JDK1.8默认开启，线上项目不建议关闭。
 
 年轻代和老年代的垃圾回收都会触发 STW 事件。
 
