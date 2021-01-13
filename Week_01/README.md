@@ -26,6 +26,8 @@ javap -c/-v
 
 #### 字节码的运行时结构
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_01/Image/Frame.png)
+
 JVM是一台基于栈的计算机器。
 
 每个线程都有一个独属于自己的线程栈（JVM Stack），用于存储栈帧（Frame）。
