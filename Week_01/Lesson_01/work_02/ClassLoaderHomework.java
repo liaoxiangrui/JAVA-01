@@ -1,6 +1,9 @@
 package com.raw;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 
 /**
@@ -20,17 +23,28 @@ public class ClassLoaderHomework extends ClassLoader {
 
     @Override
     protected Class<?> findClass(String name) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        InputStream is = null;
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
         int num;
+        byte[] bytes = new byte[0];
         try {
-            InputStream is = new FileInputStream("C:/Users/a4609/Desktop/Hello.xlass");
+            is = new FileInputStream("C:/Users/a4609/Desktop/Hello.xlass");
             while ((num = is.read()) != -1) {
-                stream.write(255 - num);
+                os.write(255 - num);
             }
+            bytes = os.toByteArray();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                    os.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        byte[] bytes = stream.toByteArray();
         return defineClass(name, bytes, 0, bytes.length);
     }
 }
