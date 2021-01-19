@@ -130,15 +130,21 @@ DUMP 线程\内存；
 
 ## Java Socket 编程（重点）
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/socket.png)
+
 ## NIO 模型与相关概念（重点）
 
 **五种IO模型**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/%E4%BA%94%E7%A7%8DIO%E6%A8%A1%E5%9E%8B.png)
 
 **IO 模型-01**
 
 阻塞式 IO、BIO 
 
 一般通过在 while(true) 循环中服务端会调用 accept() 方法等待接收客户端的连接的方式监听请求，请求一旦接收到一个连接请求，就可以建立 通信套接字在这个通信套接字上进行 读写操作，此时不能再接收其他客户端连接请求，只能等待同当前连接的客户端的操作执行完成， 不过可以通过多线程来支持多个客户端的连接
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B1.png)
 
 **IO 模型-02**
 
@@ -147,6 +153,8 @@ DUMP 线程\内存；
 和阻塞 IO 类比，内核会立即返回，返回后获得足够的 CPU 时间继续做 其它的事情。 
 
 用户进程第一个阶段不是阻塞的,需要不断的主动询问 kernel 数据好了没有；第二个阶段依然总是阻塞的。
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B2.png)
 
 **IO 模型-03**
 
@@ -158,7 +166,11 @@ IO 复用同非阻塞 IO 本质一样，不过利用了新的 select 系统调�
 
 进程先是阻塞在 select/poll 上，再是阻塞在读操作的第二个阶段上。
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B3.png)
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B3_1.png)
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B3_2.png)
 
 select/poll 的几大缺点： 
 
@@ -176,6 +188,8 @@ epoll（Linux 2.5.44内核中引入,2.6内核正式引入,可被用于代替 POS
 
 （3）fd 没有限制，可以支撑10万连接
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8Bselect.png)
+
 **IO 模型-04**
 
 信号驱动 I/O 
@@ -183,6 +197,8 @@ epoll（Linux 2.5.44内核中引入,2.6内核正式引入,可被用于代替 POS
 信号驱动 IO 与 BIO 和 NIO 最大的区别就在于，在 IO 执行的数据准备阶段，不会阻塞用户进程。 
 
 如图所示：当用户进程需要等待数据的时候，会向内核发送一个信号，告诉内核我要什么数据，然后用户进程 就继续做别的事情去了，而当内核中的数据准备好之后，内核立马发给用户进程一个信号，说”数据准备好了，快来查收“，用户进程收到信号之后，立马调用 recvfrom，去查收数据。
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B4.png)
 
 **IO 模型-05**
 
@@ -192,7 +208,9 @@ epoll（Linux 2.5.44内核中引入,2.6内核正式引入,可被用于代替 POS
 
 windows 的 IOCP 模型
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B5.png)
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_02/Image/IO%E6%A8%A1%E5%9E%8B5_1.png)
 
 一个场景，去打印店打印文件。 
 
