@@ -2,37 +2,65 @@
 
 ## 什么是高性能（重点）
 
-**性能指标：**高并发用户（Concurrent Users）、高吞吐量（Throughout）、低延迟（Latency）
+**性能指标**：高并发用户（Concurrent Users）、高吞吐量（Throughout）、低延迟（Latency）
 
-延迟和响应时间的差异：延迟是系统内部的响应时间；响应时间是从用户发出请求到收到响应的时间。
+延迟和响应时间（RT）的差异：延迟是系统内部的运行时间；响应时间是从用户发出请求到收到响应的时间。
 
-**应对策略：**稳定性建设（混沌工程）：容量、爆炸半径、工程方面积累与改进
+**应对策略**：稳定性建设（混沌工程）：容量、爆炸半径、工程方面积累与改进
 
 ## Netty 如何实现高性能（重点）
 
-**从socket io到nio**
+**从Socket IO到NIO**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/SocketIO%E5%88%B0NIO.png)
 
 **从 Socket IO 到 NIO--BIO多线程模型**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/%E4%BB%8ESocketIO%E5%88%B0NIO--BIO%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)
+
 **从事件处理机制到 Reactor 模型**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/%E4%BB%8E%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6%E5%88%B0Reactor%E6%A8%A1%E5%9E%8B.png)
 
 Reactor 模式首先是事件驱动的，有一个或者多个并发输入源，有一个 Service Handler和多个EventHandlers。这个 Service Handler 会同步的将输入的请求多路复用的分发给相应的 Event Handler。
 
-**从Reactor模型到 Netty NIO--01**
+**从Reactor模型到 Netty NIO--01（单线程）**
 
-**从Reactor模型到 Netty NIO--02**
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Reactor%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)
 
-**从Reactor模型到 Netty NIO--03**
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Reactor%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B1.png)
+
+**从Reactor模型到 Netty NIO--02（多线程）**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Reactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B.png)
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Reactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B1.png)
+
+**从Reactor模型到 Netty NIO--03（主从）**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Reactor%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%9E%8B.png)
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Reactor%E4%B8%BB%E4%BB%8E%E6%A8%A1%E5%9E%8B1.png)
 
 **Netty对三种模式的支持**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Netty%E5%AF%B9%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E6%94%AF%E6%8C%81.png)
+
 **Netty启动和处理流程**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Netty%E5%90%AF%E5%8A%A8%E5%92%8C%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B.png)
 
 **Netty线程模式**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%BC%8F.png)
+
 **Netty核心对象**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Netty%E6%A0%B8%E5%BF%83%E5%AF%B9%E8%B1%A1.png)
+
 **Netty运行原理**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Netty%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86.png)
 
 **关键对象**
 
@@ -68,6 +96,10 @@ MSS：Maxitum Segment Size 最大分段大小, 为 MTU - 20(IP) - 20(TCP) ：146
 
 **连接优化**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.png)
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.png)
+
 Linux上MSL默认1分钟，windows上默认为2分钟。
 
 Linux的MSL在系统参数/proc/sys/net/ipv4/tcp_fin_timeout设置，Windows的MSL在注册表TcpTimedWaitDelay中设置
@@ -75,7 +107,7 @@ Linux的MSL在系统参数/proc/sys/net/ipv4/tcp_fin_timeout设置，Windows的M
 **Netty 优化**
 
 1. 不要阻塞 EventLoop
-2. 系统参数优化：ulimit -a 、/proc/sys/net/ipv4/tcp_fin_timeout、TcpTimedWaitDelay 
+2. 系统参数优化：ulimit -a（查看文件句柄数）、/proc/sys/net/ipv4/tcp_fin_timeout、TcpTimedWaitDelay 
 3. 缓冲区优化：SO_RCVBUF/SO_SNDBUF/SO_BACKLOG/ REUSEXXX 
 4. 心跳周期优化：心跳机制与短线重连
 5. 内存与 ByteBuffer 优化：DirectBuffer与HeapBuffer
@@ -85,17 +117,27 @@ Linux的MSL在系统参数/proc/sys/net/ipv4/tcp_fin_timeout设置，Windows的M
 
 Zuul：Zuul 是 Netflix 开源的 API 网关系统，它的主要设计目标是动态路由、监控、弹性和 安全。Zuul 的内部原理可以简单看做是很多不同功能 filter 的集合，最主要的就是 pre、routing、post 这三种过滤器，分别作用于 调用业务服务 API 之前的请求处理、直接响应、调用业务服务 API 之后的响应处理。
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Zuul.png)
+
 Zuul2：Zuul 2.x 是基于 Netty 内核重构的版本。
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Zuul2.png)
+
 Spring Cloud Gateway
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Spring%20Cloud%20Gateway.png)
 
 ## 多线程基础（了解）
 
 **Java 线程的创建过程**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/Java%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B.png)
+
 ## Java 多线程（重点）
 
 **线程状态**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_03/Image/%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81.png)
 
 **Thread 的状态改变操作**
 
