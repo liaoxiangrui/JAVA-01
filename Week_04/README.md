@@ -106,6 +106,8 @@ wait/notify、Lock/Condition，可以作为简单的协作机制。
 
 AbstractQueuedSynchronizer，即抽象队列同步器。它是构建锁或者其他同步组件的基础（如Semaphore、CountDownLatch、ReentrantLock、ReentrantReadWriteLock），是JUC并发包中的核心基础组件，**抽象了竞争的资源和线程队列**。
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_04/Image/AQS.png)
+
 两种资源共享方式：独占 | 共享，子类负责实现公平 OR 非公平
 
 **Semaphore - 信号量**
@@ -128,6 +130,17 @@ AbstractQueuedSynchronizer，即抽象队列同步器。它是构建锁或者其
 
 **CountDownLatch与CyclicBarrier比较**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_04/Image/CDL%E5%92%8CCB%E6%AF%94%E8%BE%831.png)
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_04/Image/CDL%E5%92%8CCB%E6%AF%94%E8%BE%832.png)
+
 **Future/FutureTask/CompletableFuture**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_04/Image/Future.png)
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_04/Image/Future1.png)
+
 **CompletableFuture**
+
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_04/Image/CompletableFuture.png)
+
