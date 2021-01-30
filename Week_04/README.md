@@ -36,6 +36,10 @@ boolean tryLock();
 
 ReadWriteLock管理一组锁，一个读锁，一个写锁。读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。所有读写锁的实现必须确保写操作对读操作的内存影响。每次只能有一个写线程，但是同时可以有多个线程并发地读数据。ReadWriteLock适用于读多写少的并发情况。
 
+**基础接口 - Condition**
+
+通过Lock.newCondition()创建。可以看做是Lock对象上的信号。类似于wait/notify，**不同之处在于Condition可以new出多个来控制线程间相互协调，并复用同一个lock**。
+
 **LockSupport--锁当前线程**
 
 LockSupport类似于Thread类的静态方法，专门处理（执行这个代码的）本线程的。
@@ -85,6 +89,8 @@ CAS本质上没有使用锁。并发压力跟锁性能的关系：
 1. AtomicInteger和AtomicLong里的value是所有线程竞争读写的热点数据；
 2. 将单个value拆分成跟线程一样多的数组Cell[]；
 3. 每个线程写自己的Cell[i]++，最后对数组求和。
+
+**ABA问题**：在修改数字类型的情况下其实不算问题；如果是对象引用类型修改，增加时间戳或者版本号（JDK 中 java.util.concurrent.atomic 并发包下，提供了 AtomicStampedReference，通过为引用建立个 Stamp 类似版本号的方式，确保 CAS 操作的正确性。）。
 
 ## 并发工具类（重点）
 
