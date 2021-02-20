@@ -10,6 +10,8 @@ Spring早期版本的核心功能，管理对象生命周期与对象装配。
 
 一个对象的代理有哪些种类？用在什么场景？**接口类型**：默认使用JdkProxy，如果配置参数proxyTargetClass，那就是CGlib；**非接口类型**：默认使用CGlib。
 
+![AOP](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/AOP.png)
+
 **IoC-控制反转**
 
 也成为DI（Dependency Injection）依赖注入。**对象装配思路的改进**。 
@@ -24,7 +26,9 @@ Spring早期版本的核心功能，管理对象生命周期与对象装配。
 
 Bean的加载过程
 
+![Bean生命周期1](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/springbean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png)
 
+![Bean生命周期2](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/springbean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F1.png)
 
 Aware 接口有： 
 
@@ -50,7 +54,7 @@ Aware 接口有：
 
 **XML配置原理：**
 
-
+![XML配置原理](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/xml%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86.png)
 
 解析成Bean后再开始执行Bean的加载过程。
 
@@ -246,9 +250,11 @@ JavaConfig方式：`@Configuration`+`@Bean`
 
 **什么是MVC**
 
-
+![MVC](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/MVC.png)
 
 **SpringMVC的流程**：
+
+![SpringMVC](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/SpringMVC.png)
 
 第一步：用户发起请求到前端控制器（DispatcherServlet） 
 
@@ -278,7 +284,7 @@ JavaConfig方式：`@Configuration`+`@Bean`
 
 后端：SpringMVC->RestController，SwaggerUI
 
-
+![MVC注解](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/MVC%E6%B3%A8%E8%A7%A3.png)
 
 ## Spring Data/Messaging（了解）
 
@@ -438,12 +444,12 @@ Spring Boot 是 Spring 的一套快速配置脚手架，关注于自动配置，
     	 */
     	ANY, 
     	/**
-         * Only servlet-based web application will match. 
-         */
+    	 * Only servlet-based web application will match. 
+    	 */
     	SERVLET, 
     	/**
-         * Only reactive-based web application will match.
-         */
+    	 * Only reactive-based web application will match.
+    	 */
     	REACTIVE
     }
     ```
@@ -546,13 +552,13 @@ Hibernate 里需要定义实体类和 hbm 映射关系文件（IDE 一般有工�
 
 Hibernate 里可以使用 HQL、Criteria、Native SQL三种方式操作数据库。也可以作为 JPA 适配实现，使用 JPA 接口操作。
 
-
+![Hibernate](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/Hibernate.png)
 
 **MyBatis**
 
 MyBatis 是一款优秀的持久层框架，它支持定制化 SQL、存储过程以及高级映射。MyBatis 避免了几乎所有的JDBC 代码和手动设置参数以及获取结果集。MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 POJOs(Plain Old Java Objects,普通的 Java 对象)映射成数据库中的记录。
 
-
+![MyBatis](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/MyBatis.png)
 
 **MyBatis-半自动化ORM**
 
@@ -579,7 +585,7 @@ Hibernate 缺点：对 DBA 不友好
 
 JPA 的全称是 Java Persistence API，即 Java 持久化 API，是一套基于 ORM 的规范，内部是由一系列的接口和抽象类构成。JPA 通过 JDK 5.0 注解描述对象-关系表映射关系，并将运行期的实体对象持久化到数据库中。核心 EntityManager
 
-
+![JPA](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/JPA.png)
 
 **Spring 管理事务**
 
@@ -594,7 +600,7 @@ JDBC 层，数据库访问层，怎么操作事务？编程式事务管理
 
 Spring 怎么做到无侵入实现事务？声明式事务管理：事务管理器+AOP
 
-
+![Spring事务](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/Spring%E4%BA%8B%E5%8A%A1.png)
 
 事务的传播性一般用在事务嵌套的场景，比如一个事务方法里面调用了另外一个事务方法，那么两个方法是各自作为独立的方法提交还是内层的事务合并到外层的事务一起提交，这就是需要事务传播机制的配置来确定怎么样执行。 
 
@@ -607,6 +613,8 @@ Spring 怎么做到无侵入实现事务？声明式事务管理：事务管理�
 - PROPAGATION_NEVER：该传播机制不支持外层事务，即如果外层有事务就抛出异常
 - PROPAGATION_MANDATORY：与NEVER相反，如果外层没有事务，则抛出异常
 - PROPAGATION_NESTED：该传播机制的特点是可以保存状态保存点，当前事务回滚到某一个点，从而避免所有的嵌套事务都回滚，即各自回滚各自的，如果子事务没有把异常吃掉，基本还是会引起全部回滚的。
+
+![事务隔离级别](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_05/Image/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.png)
 
 **Spring 声明式事务配置参考**
 
