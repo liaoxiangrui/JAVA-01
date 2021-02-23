@@ -271,7 +271,7 @@ BC 范式（BCNF）：在满足 3NF 的基础上，消除主属性对码的部�
 
 **MySQL架构图**
 
-
+![MySQL架构图](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_06/Image/MySQL%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
 
 **MySQL存储**
 
@@ -290,19 +290,21 @@ BC 范式（BCNF）：在满足 3NF 的基础上，消除主属性对码的部�
 
 **MySQL简化执行流程**
 
-
+![MySQL简化执行流程](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_06/Image/MySQL%E7%AE%80%E5%8C%96%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png)
 
 **MySQL详细执行流程**
 
-
+![MySQL详细执行流程](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_06/Image/MySQL%E8%AF%A6%E7%BB%86%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png)
 
 **MySQL执行引擎和状态**
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_06/Image/MySQL%E5%BC%95%E6%93%8E.png)
 
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_06/Image/MySQL%E7%8A%B6%E6%80%81.png)
 
 **MySQL对SQL执行顺序**
 
-
+![](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_06/Image/MySQL%E5%AF%B9SQL%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F.png)
 
 实际上这个过程也并不是绝对这样的，中间 mysql 会有部分的优化以达到最佳的优化效果，比如在 select 筛选出找到的数据集
 
@@ -310,11 +312,7 @@ BC 范式（BCNF）：在满足 3NF 的基础上，消除主属性对码的部�
 
 数据是按页来分块的，当一个数据被用到时，其附近的数据也通常会马上被使用。InnoDB 使用 B+ 树实现聚集索引
 
-为什么一般单表数据不超过2000万？在InnoDB默认页大小16k的情况下，按照一行数据1k的假设，一页一共16行，一般期望在B+树聚集索引3层树结构以内能找到需要的数据，主键为bigint类型的时候一个数据是8字节，InnoDB默认指针大小为6字节，所以通过计算
-$$
-(16*1024/(8+6))^2*16≈2000w
-$$
-因为2000w的数据已经有3层B+树了，数据再多需要再增加层数，树的层级增加会增加IO操作，降低性能。
+为什么一般单表数据不超过2000万？在InnoDB默认页大小16k的情况下，按照一行数据1k的假设，一页一共16行，一般期望在B+树聚集索引3层树结构以内能找到需要的数据，主键为bigint类型的时候一个数据是8字节，InnoDB默认指针大小为6字节，所以通过计算`(16*1024/(8+6))^2*16≈2000w`，因为2000w的数据已经有3层B+树了，数据再多需要再增加层数，树的层级增加会增加IO操作，降低性能。
 
 ## MySQL 配置优化（重点）
 
