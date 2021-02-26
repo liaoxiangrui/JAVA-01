@@ -322,7 +322,7 @@ BC 范式（BCNF）：在满足 3NF 的基础上，消除主属性对码的部�
 
 1. max_connections
 2. back_log
-3. wait_timeout和interative_timeout
+3. wait_timeout和interative_timeout（默认8小时）
 
 查看参数配置
 
