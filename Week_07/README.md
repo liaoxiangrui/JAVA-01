@@ -168,7 +168,7 @@ Binlog 格式
 
 ## MySQL 读写分离（重点）
 
-**读写分离-动态切换数据源版本1.0**
+[**读写分离-动态切换数据源版本1.0**](https://github.com/liaoxiangrui/JAVA-01/tree/main/Week_07/Lesson_14/work_02/switchdatasource)
 
 1. 基于 Spring/Spring Boot，配置多个数据源(例如2个，master 和 slave)
 2. 根据具体的 Service 方法是否会操作数据，注入不同的数据源,1.0版本
@@ -176,7 +176,7 @@ Binlog 格式
 4. 改进二下1.2：支持配置多个从库；
 5. 改进三下1.3：支持多个从库的负载均衡。
 
-**读写分离-数据库框架版本2.0**
+[**读写分离-数据库框架版本2.0**](https://github.com/liaoxiangrui/JAVA-01/tree/main/Week_07/Lesson_14/work_03/switchdatasource2.0)
 
 1. 分析前一版本“动态切换数据源”有什么问题？
    - 侵入性还是较强
