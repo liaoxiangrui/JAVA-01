@@ -1,0 +1,21 @@
+server:
+  port: 8888
+spring:
+  datasource:
+    master:
+      jdbc-url: jdbc:mysql://localhost:3316/user?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    slave:
+      enabled: true
+      jdbc-url: jdbc:mysql://localhost:3326/user?useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  config-location: classpath:/config/mybatis-config.xml
