@@ -1,0 +1,33 @@
+server:
+  port: 8889
+spring:
+  shardingsphere:
+    datasource:
+      names: ds0,ds1
+      common:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password:
+      ds0:
+        jdbc-url: jdbc:mysql://localhost:3316/user?useUnicode=true&characterEncoding=UTF-8
+      ds1:
+        jdbc-url: jdbc:mysql://localhost:3326/user?useUnicode=true&characterEncoding=UTF-8
+    rules:
+      replica-query:
+        data-sources:
+          replica0:
+            primary-data-source-name: ds0
+            replica-data-source-names: ds1
+            load-balancer-name: round-robin
+        load-balancers:
+          round-robin:
+            type: ROUND_ROBIN
+            props:
+              workid: 0
+    props:
+      sql-show: true
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  config-location: classpath:/config/mybatis-config.xml

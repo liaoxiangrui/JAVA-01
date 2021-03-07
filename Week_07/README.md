@@ -133,7 +133,7 @@ value相当于版本号。
 1. 主库写 binlog
 2. 从库 relay log
 
-![主从复制]()
+![主从复制](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6.png)
 
 历史：
 
@@ -150,15 +150,15 @@ Binlog 格式
 
 异步复制：传统主从复制--2000年，MySQL 3.23.15版本引入了 Replication
 
-![异步复制]()
+![异步复制](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/%E5%BC%82%E6%AD%A5%E5%A4%8D%E5%88%B6.png)
 
 半同步复制：需要启用插件
 
-![半同步复制]()
+![半同步复制](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/%E5%8D%8A%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6.png)
 
 组复制：
 
-![组复制]()
+![组复制](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/%E7%BB%84%E5%A4%8D%E5%88%B6.png)
 
 **主从复制的局限性**
 
@@ -260,7 +260,7 @@ MHA（Master High Availability）目前在 MySQL 高可用方面是一个相对�
 1. 需要配置 SSH 信息
 2. 至少3台
 
-![MHA]()
+![MHA](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/MHA.png)
 
 **MySQL高可用3：MGR**
 
@@ -271,27 +271,27 @@ MHA（Master High Availability）目前在 MySQL 高可用方面是一个相对�
 1. 外部获得状态变更需要读取数据库。
 2. 外部需要使用 LVS/VIP 配置。
 
-![MGR]()
+![MGR](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/MGR.png)
 
 MGR 特点
 
-![MGR特点]()
+![MGR特点](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/MGR%E7%89%B9%E7%82%B9.png)
 
 **MySQL高可用4：MySQL Cluster**
 
-![Cluster]()
+![Cluster](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/Cluster1.png)
 
-![Cluster]()
+![Cluster](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/Cluster2.png)
 
 **MySQL高可用5：Orchestrator**
 
 如果主节点挂掉，将某个从改成主；
 
-![orchestrator]()
+![orchestrator](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/orchestrator.png)
 
 优势：
 
 - 能直接在 UI 界面
 - 拖拽改变主从关系
 
-![orchestrator]()
+![orchestrator](https://github.com/liaoxiangrui/JAVA-01/blob/main/Week_07/Image/orchestrator1.png)
